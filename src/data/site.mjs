@@ -12,13 +12,44 @@ export const site = {
   businessPhoneUrl: 'tel:+555133919251',
   whatsapp: 'https://wa.me/5551993869229',
   email: 'contato@aafjadvocacia.com.br',
-  address: ['Avenida Baltazar de Oliveira Garcia, 950', 'Sarandi, Porto Alegre/RS', 'CEP 91130-000', 'Brasil'],
+  address: ['Avenida Baltazar de Oliveira Garcia, 950, sala 301', 'Sarandi, Porto Alegre/RS', 'CEP 91130-000', 'Brasil'],
   socials: [
     ['Instagram', 'https://www.instagram.com/aafjr_advocacia/'],
     ['Facebook', 'https://www.facebook.com/profile.php?id=100083234796826'],
     ['Threads', 'https://www.threads.com/@aafjr_advocacia'],
   ],
 };
+
+export const lawyers = [
+  {
+    id: 'air-alves-freitas-junior',
+    name: site.lawyer,
+    registration: site.registration,
+    photo: site.officePhoto || site.portrait,
+    role: 'Advogado, fundador e CEO da AAFJ Advocacia',
+    description: 'Atua na advocacia há mais de uma década, com experiência, estratégia e compromisso na defesa dos interesses de seus clientes.',
+    education: [
+      'Graduado em Direito pela FADERGS (2013).',
+      'Pós-graduado em Direito e Processo do Trabalho, Direito Público e Direito Civil e Processo Civil.',
+    ],
+    institutional: [
+      'Membro da AGETRA – Associação Gaúcha dos Advogados Trabalhistas.',
+      'Também integrou a Comissão Especial da Advocacia Trabalhista da OAB/RS.',
+    ],
+  },
+  {
+    id: 'douglas-dezingrini-de-quadros',
+    name: 'Douglas Dezingrini de Quadros',
+    registration: 'OAB/RS 105.440',
+    photo: { src: '/images/advogado2.png', alt: 'Douglas Dezingrini de Quadros', width: 1536, height: 2752 },
+    role: 'Advogado da AAFJ Advocacia',
+    education: [
+      'Bacharel em Direito pela FADERGS – RS.',
+      'Pós-graduado em Direito do Trabalho pela UniRitter.',
+      'Pós-graduado em Direito Empresarial pela Legale Educacional.',
+    ],
+  },
+];
 
 export const areas = [
   ['Direito Trabalhista', 'direito-trabalhista', 'Defesa dos direitos de trabalhadores e empresas.', 'briefcase'],

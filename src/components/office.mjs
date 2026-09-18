@@ -1,12 +1,46 @@
-import { site } from '../data/site.mjs';
+import { site, lawyers } from '../data/site.mjs';
 import { button, icon } from './ui.mjs';
+
+function lawyerSection(lawyer, { eager = false, reverse = false } = {}) {
+  const visual = lawyer.photo
+    ? `<img src="${lawyer.photo.src}" alt="${lawyer.photo.alt}" width="${lawyer.photo.width}" height="${lawyer.photo.height}" loading="${eager ? 'eager' : 'lazy'}" decoding="async">`
+    : `<div class="office-photo-placeholder"><div class="office-art" aria-hidden="true"><span>AAFJ</span><span>ADVOCACIA</span></div><p>Fotografia institucional<br>em preparação</p></div>`;
+
+  return `<section class="office-section lawyer-section${reverse ? ' lawyer-section--reverse' : ''}" id="${lawyer.id}" aria-labelledby="lawyer-title-${lawyer.id}">
+    <div class="container office-grid">
+      <header class="office-heading">
+        <p class="eyebrow"><span></span>O ADVOGADO</p>
+        <h2 id="lawyer-title-${lawyer.id}">${lawyer.name}</h2>
+        <p class="lawyer-registration-mobile">${lawyer.registration}</p>
+      </header>
+        <figure class="office-figure">
+          <div class="office-photo">${visual}</div>
+          <figcaption class="office-lawyer"><span>${lawyer.name}</span><span>${lawyer.registration}</span></figcaption>
+          <p class="office-location">${icon('pin')}Porto Alegre · Rio Grande do Sul</p>
+        </figure>
+      <div class="office-copy">
+          <div class="office-profile">
+            <p class="office-profile-role">${lawyer.role}</p>
+            ${lawyer.description ? `<p class="office-description">${lawyer.description}</p>` : ''}
+            <dl class="office-credentials">
+              <div>
+                <dt>Formação acadêmica</dt>
+                ${lawyer.education.map(item => `<dd>${item}</dd>`).join('')}
+              </div>
+              ${lawyer.institutional ? `<div>
+                <dt>Participação institucional</dt>
+                ${lawyer.institutional.map(item => `<dd>${item}</dd>`).join('')}
+              </div>` : ''}
+            </dl>
+          </div>
+          ${button('Converse com nossa equipe', site.whatsapp)}
+      </div>
+    </div>
+  </section>`;
+}
 
 export function office({ standalone = false } = {}) {
   const heading = standalone ? 'h1' : 'h2';
-  const photo = site.officePhoto || site.portrait;
-  const visual = photo
-    ? `<img src="${photo.src}" alt="${photo.alt}" width="${photo.width}" height="${photo.height}" loading="${standalone ? 'eager' : 'lazy'}" decoding="async">`
-    : `<div class="office-photo-placeholder"><div class="office-art" aria-hidden="true"><span>AAFJ</span><span>ADVOCACIA</span></div><p>Fotografia institucional<br>em preparação</p></div>`;
 
   return `<section class="office-section" id="o-escritorio" aria-labelledby="office-title">
     <div class="container">
@@ -33,37 +67,5 @@ export function office({ standalone = false } = {}) {
       </div>
     </div>
   </section>
-  <section class="office-section lawyer-section" id="air-alves-freitas-junior" aria-labelledby="lawyer-title">
-    <div class="container office-grid">
-      <header class="office-heading">
-        <p class="eyebrow"><span></span>O ADVOGADO</p>
-        <h2 id="lawyer-title">${site.lawyer}</h2>
-        <p class="lawyer-registration-mobile">${site.registration}</p>
-      </header>
-        <figure class="office-figure">
-          <div class="office-photo">${visual}</div>
-          <figcaption class="office-lawyer"><span>${site.lawyer}</span><span>${site.registration}</span></figcaption>
-          <p class="office-location">${icon('pin')}Porto Alegre · Rio Grande do Sul</p>
-        </figure>
-      <div class="office-copy">
-          <div class="office-profile">
-            <p class="office-profile-role">Advogado, fundador e CEO da AAFJ Advocacia</p>
-            <p class="office-description">Atua na advocacia há mais de uma década, com experiência, estratégia e compromisso na defesa dos interesses de seus clientes.</p>
-            <dl class="office-credentials">
-              <div>
-                <dt>Formação acadêmica</dt>
-                <dd>Graduado em Direito pela FADERGS (2013).</dd>
-                <dd>Pós-graduado em Direito e Processo do Trabalho, Direito Público e Direito Civil e Processo Civil.</dd>
-              </div>
-              <div>
-                <dt>Participação institucional</dt>
-                <dd>Membro da AGETRA – Associação Gaúcha dos Advogados Trabalhistas.</dd>
-                <dd>Também integrou a Comissão Especial da Advocacia Trabalhista da OAB/RS.</dd>
-              </div>
-            </dl>
-          </div>
-          ${button('Converse com nossa equipe', site.whatsapp)}
-      </div>
-    </div>
-  </section>`;
+  ${lawyers.map((lawyer, index) => lawyerSection(lawyer, { eager: standalone && index === 0, reverse: index % 2 === 1 })).join('')}`;
 }

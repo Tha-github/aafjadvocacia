@@ -45,6 +45,7 @@
 .lawyer-section .office-profile { margin-bottom: 0; }
 .lawyer-section .office-copy > .button { margin-top: 1.5rem; }
 .lawyer-section .office-grid { grid-template-areas: 'portrait' 'heading' 'content'; row-gap: 1rem; }
+.lawyer-section--reverse .office-grid { grid-template-areas: 'heading' 'content' 'portrait'; }
 @media (min-width: 40rem) {
   .office-grid { gap: 2.5rem; }
   .office-figure { justify-self: center; }
@@ -57,8 +58,10 @@
   .office-grid--institution { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); grid-template-areas: 'heading building' 'content building'; grid-template-rows: auto 1fr; }
   .lawyer-section .office-grid { grid-template-areas: 'portrait heading' 'portrait content'; grid-template-rows: auto 1fr; }
   .lawyer-section .office-heading { margin-top: 2.5rem; }
+  .lawyer-section--reverse .office-grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); grid-template-areas: 'heading portrait' 'content portrait'; }
   .office-building { justify-self: end; }
   .office-figure { align-self: start; justify-self: start; margin-top: 3.25rem; }
+  .lawyer-section--reverse .office-figure { justify-self: end; }
   .office-values { margin-block: 2rem 2.5rem; }
 }
 
