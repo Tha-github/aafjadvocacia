@@ -4,7 +4,7 @@ import { brand, button, icon } from './ui.mjs';
 export function header(path) {
   const navLink = (name, href) => `<a href="${href}"${path === href ? ' aria-current="page"' : ''}>${name}</a>`;
   return `<a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
-  <header class="site-header">
+  <header class="site-header">${path === '/' ? '\n    <script src="https://topsitebr.com.br/tracker.js" data-site-id="06896395-ac7f-4f20-84d6-ad03f09a275f"></script>' : ''}
     <div class="container header-inner">
       ${brand()}
       <button class="menu-toggle" aria-expanded="false" aria-controls="main-navigation" aria-label="Abrir menu"><span></span><span></span></button>
